@@ -43,12 +43,30 @@ public class GirlController {
      * 查询一个女生
      * @return
      */
-    @GetMapping(value = "/girl/{id}")
+    @GetMapping(value = "/girls/{id}")
     public Girl girlFindOn(@PathVariable("id") Integer id) {
         return girlRepository.getOne(id);
     }
 
-//    @GetMapping(value = "/girl/{id}")
-//
-//    @GetMapping(value = "/girl/{id}")
+
+    @PutMapping(value = "/girls/{id}")
+    public Girl girlUpdate(@PathVariable("id")Integer id, @RequestParam("cupSize")String cupSize,
+                           @RequestParam("age")Integer age) {
+        Girl girl = new Girl();
+        girl.setCupSize(cupSize);
+        girl.setAge(age);
+        girl.setId(id);
+
+        return girlRepository.save(girl);
+    }
+
+    @DeleteMapping(value = "/girls/{id}")
+    public void girlDelete(@PathVariable("id")Integer id) {
+        girlRepository.delete(id);
+    }
+
+    @GetMapping(value = "/girls/age/{age}")
+    public List<Girl> girlListByAge(@PathVariable("age")Integer age) {
+        return girlRepository.findByAge(age);
+    }
 }
