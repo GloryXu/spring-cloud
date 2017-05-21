@@ -1,6 +1,10 @@
 package com.redsun.spring.boot.girl;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +13,12 @@ import javax.persistence.Id;
 /**
  * Created by xugr on 2017/5/20.
  */
+@Getter
+@Setter
+@ToString
 @JsonIgnoreProperties(value={"hibernateLazyInitializer","handler","fieldHandler"})
 @Entity
+@NoArgsConstructor
 public class Girl {
 
     @Id
@@ -21,39 +29,4 @@ public class Girl {
 
     private Integer age;
 
-    public Girl() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCupSize() {
-        return cupSize;
-    }
-
-    public void setCupSize(String cupSize) {
-        this.cupSize = cupSize;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    @Override
-    public String toString() {
-        return "Girl{" +
-                "id=" + id +
-                ", cupSize='" + cupSize + '\'' +
-                ", age=" + age +
-                '}';
-    }
 }

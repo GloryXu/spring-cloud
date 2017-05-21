@@ -1,11 +1,15 @@
 package com.redsun.spring.boot.properties;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
  * Created by xugr on 2017/5/20.
  */
+@Getter
+@Setter
 @Component
 @ConfigurationProperties(prefix = "girl")
 public class GirlProperties {
@@ -14,19 +18,4 @@ public class GirlProperties {
 
     private Integer age;
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String getCupSize() {
-        return cupSize;
-    }
-
-    public void setCupSize(String cupSize) {
-        this.cupSize = cupSize;
-    }
 }
