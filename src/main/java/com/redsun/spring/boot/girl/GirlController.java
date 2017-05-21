@@ -31,7 +31,7 @@ public class GirlController {
      * @return
      */
     @PostMapping(value = "/girls")
-    public Girl girlAdd(@RequestParam(name = "cupSize")String cupSize, @RequestParam(name = "age")Integer age) {
+    public Girl girlAdd(@RequestParam("cupSize")String cupSize, @RequestParam("age")Integer age) {
         Girl girl = new Girl();
         girl.setAge(age);
         girl.setCupSize(cupSize);

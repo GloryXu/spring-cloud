@@ -10,12 +10,3 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-  http:
-    encoding:
-      charset: utf-8
-      enabled: true
-    converters:
-      preferred-json-mapper: jackson
-  jackson:
-    serialization: true
-
