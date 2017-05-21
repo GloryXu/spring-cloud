@@ -1,0 +1,9 @@
+@PathVariable
+    获取url中的数据
+@RequestParam
+    获取请求参数的值
+@GetMapping
+    组合注解
+
+--启动方式
+    java -jar XXX.jar --spring.profiles.active=prod

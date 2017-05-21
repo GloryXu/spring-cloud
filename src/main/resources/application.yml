@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/temp
+    username: root
+    password: hongyang1
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+    converters:
+      preferred-json-mapper: jackson
+  jackson:
+    serialization: true
+
