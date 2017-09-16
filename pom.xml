@@ -11,6 +11,7 @@
         <module>test-service</module>
         <module>spring-cloud-config-client</module>
         <module>spring-cloud-config-server</module>
+        <module>eureka</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -35,12 +36,22 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Brixton.RELEASE</version>
+                <version>Dalston.SR3</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
