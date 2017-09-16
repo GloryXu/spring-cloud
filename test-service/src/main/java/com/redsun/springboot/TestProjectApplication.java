@@ -1,9 +1,9 @@
-package com.redsun.spring.boot;
+package com.redsun.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = {"com.redsun.spring.boot"})
+@SpringBootApplication(scanBasePackages = {"com.redsun.springboot"})
 public class TestProjectApplication {
 
 	public static void main(String[] args) {

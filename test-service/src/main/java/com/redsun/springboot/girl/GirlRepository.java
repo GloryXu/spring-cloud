@@ -1,4 +1,4 @@
-package com.redsun.spring.boot.girl;
+package com.redsun.springboot.girl;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

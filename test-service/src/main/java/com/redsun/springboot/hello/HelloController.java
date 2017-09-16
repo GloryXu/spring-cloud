@@ -1,6 +1,6 @@
-package com.redsun.spring.boot.hello;
+package com.redsun.springboot.hello;
 
-import com.redsun.spring.boot.properties.GirlProperties;
+import com.redsun.springboot.properties.GirlProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

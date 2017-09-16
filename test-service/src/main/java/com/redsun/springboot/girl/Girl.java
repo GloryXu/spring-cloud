@@ -1,4 +1,4 @@
-package com.redsun.spring.boot.girl;
+package com.redsun.springboot.girl;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;

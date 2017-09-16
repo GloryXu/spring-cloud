@@ -1,4 +1,4 @@
-package com.redsun.spring.boot.hello;
+package com.redsun.springboot.hello;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

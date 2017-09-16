@@ -1,4 +1,4 @@
-package com.redsun.spring.boot.properties;
+package com.redsun.springboot.properties;
 
 import lombok.Getter;
 import lombok.Setter;
