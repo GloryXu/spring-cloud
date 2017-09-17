@@ -1,0 +1,19 @@
+server:
+  port: 1111
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://peer2:1112
+  instance:
+    hostname: peer1
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 30000
+
+#    使用ip的形式来定义注册中心的地址，默认为false
+#    prefer-ip-address: true
+spring:
+  application:
+    name: eureka-server

@@ -14,6 +14,7 @@
     <modules>
         <module>eureka-server</module>
         <module>eureka-client</module>
+        <module>eureka-consumer</module>
     </modules>
 
 

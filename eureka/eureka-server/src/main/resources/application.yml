@@ -1,11 +1,6 @@
-server:
-  port: 1111
-eureka:
-  client:
-    register-with-eureka: false
-    fetch-registry: false
-  instance:
-    hostname: localhost
-  server:
-    enable-self-preservation: false
-    eviction-interval-timer-in-ms: 30000
+spring:
+  profiles:
+    active: peer1
+
+# eureka.client.region
+# eureka.client.availability-zones

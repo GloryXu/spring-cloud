@@ -1,0 +1,13 @@
+region and zone
+1.一个region包含多个zone
+2.每个服务客户端需要被注册到一个zone中，每个客户端对应一个zone和region
+3.服务调用时，先访问处于同一zone的服务提供方，若访问不到，则访问其他zone
+
+emergency!
+触发了eureka server的自我保护机制，eureka server在运行期间会统计心跳失败的比例在15分钟之内是否低于85%    ？
+
+配置region
+eureka.client.region
+配置zone,可配多个，用","分隔
+eureka.client.availability-zones
+defaultZone可配置多个，用","分隔
