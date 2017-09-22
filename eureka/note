@@ -11,3 +11,9 @@ eureka.client.region
 配置zone,可配多个，用","分隔
 eureka.client.availability-zones
 defaultZone可配置多个，用","分隔
+
+## 为应用增加路径时，需要更改路径
+management.context-path=/hello
+eureka.instance.statusPageUrlPath=${management.context-path}/info
+eureka.instance.healthCheckUrlPath=${management.context-path}/health
+
