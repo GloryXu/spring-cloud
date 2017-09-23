@@ -4,7 +4,7 @@ region and zone
 3.服务调用时，先访问处于同一zone的服务提供方，若访问不到，则访问其他zone
 
 emergency!
-触发了eureka server的自我保护机制，eureka server在运行期间会统计心跳失败的比例在15分钟之内是否低于85%    ？
+触发了eureka server的自我保护机制，eureka server在运行期间会统计心跳失败的比例在15分钟之内是否高于85%
 
 配置region
 eureka.client.region
@@ -17,3 +17,10 @@ management.context-path=/hello
 eureka.instance.statusPageUrlPath=${management.context-path}/info
 eureka.instance.healthCheckUrlPath=${management.context-path}/health
 
+对于Ribbon参数的key以及value类型的定义，可以通过查看com.netflix.client.config.CommonClientConfigKey来进行查看
+
+--不同机房的实例配置成不同的区域值，以作为跨区域的容错机制
+eureka.instance.metadataMap.zone=shanghai
+
+--熔断器的超时时间需要大于Ribbon的超时时间，不然不会触发重试机制
+hystrix.command.default.execution.isolation.thread.thimeoutInMilliseconds=10000

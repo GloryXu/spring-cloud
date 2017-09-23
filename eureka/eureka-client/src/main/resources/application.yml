@@ -3,13 +3,29 @@ server:
 spring:
   application:
     name: hello-service
+  cloud:
+    loadbalancer:
+      retry:
+      # 开启重试机制
+        enabled: true
 eureka:
   client:
     service-url:
       defaultZone: http://peer1:1111/eureka/
+#      defaultZone: http://peer2:1112/eureka/,http://peer1:1111/eureka/
   instance:
     # 定义服务时效时间
     lease-expiration-duration-in-seconds: 90
     # 服务续约任务的调用时间间隔
     lease-renewal-interval-in-seconds: 30
-#      defaultZone: http://peer2:1112/eureka/,http://peer1:1111/eureka/
+    # 不同机房的实例配置成不同的区域值，以作为跨区域的容错机制
+#    metadata-map: shanghai
+
+# To see com.netflix.client.config.CommonClientConfigKey
+hello-service:
+  ribbon:
+    ConnectTimeout: 250
+    ReadTimeout: 1000
+    OkToRetryOnAllOperations: true
+    MaxAutoRetriesNextServer: 2
+    MaxAutoRetries: 1
