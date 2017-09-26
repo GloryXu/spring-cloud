@@ -1,0 +1,21 @@
+1.Hystrix工作步骤
+    a.创建HystrixCommand或HystrixObservableCommand对象
+    b.命令执行
+    c.结果是否被缓存
+    d.熔断器是否打开
+    e.线程池/请求队列/信号量是否占满
+    f.HystrixCommand.run() 或 HystrixObservableCommand.construct()
+    g.计算熔断器的健康度
+    h.fallback处理
+
+2.HystrixCommand：用于依赖的服务返回单个操作结果的时候 {execute() 和 queue()}
+    execute:同步执行，从依赖的服务返回单一的结果对象，或者发生错误时抛出异常
+    queue:异步执行，直接返回一个future对象，其中包含了服务执行结束时要返回的单一结果对象
+
+3.HystrixObservableCommand：用于依赖的服务返回多个操作结果的时候 {observe() 和 toObservable()}
+事件源，Hot observable 和 Cold observable，分别对应上面的command.observe() 和 command.toObservable()的返回对象
+    Hot observable：不论“事件源”是否有“订阅者”，都会在创建后对时间进行发布，所以对于Hot observable的每一个“订阅者”都有可能
+        是从“事件源”的中途开始的，并可能只是看到了整个操作的局部过程。
+    Cold observable：在没有“订阅者”的时候不会发布事件，而是进行等待，知道有“订阅者”之后才发布事件，所以对于Cold observable可以
+        看到整个操作的全过程
+
