@@ -27,5 +27,10 @@ public class Main {
         Observable<User> ho = new UserCommand(hystrixCommandGroupKey, restTemplate, 1L).observe();
         // Cold observable 当toObservable()执行之后，命令不会被立即执行，只有当所有订阅者都订阅之后才会执行
         Observable<User> co = new UserCommand(hystrixCommandGroupKey, restTemplate, 1L).toObservable();
+
+
+        Observable<User> oho = new UserObservableCommand(hystrixCommandGroupKey, restTemplate, 1L).observe();
+        Observable<User> oco = new UserObservableCommand(hystrixCommandGroupKey, restTemplate, 1L).toObservable();
+
     }
 }

@@ -34,7 +34,7 @@ public class UserService {
      * @param id
      * @return
      */
-    @HystrixCommand
+    @HystrixCommand(fallbackMethod = "fallbackException")
     public Future<User> getUserByIdAsync(final String id) {
         return new AsyncResult<User>() {
             @Override
@@ -45,11 +45,13 @@ public class UserService {
     }
 
     /**
+     * fallbackMethod的值必须与方法名相同，所有服务降级的方法修饰符没要求
+     * ignoreExceptions
      *
      * @param id
      * @return
      */
-    @HystrixCommand(observableExecutionMode = ObservableExecutionMode.EAGER)
+    @HystrixCommand(observableExecutionMode = ObservableExecutionMode.EAGER, fallbackMethod = "defaultUser")
     public Observable<User> getUserById(final String id) {
         return Observable.create(observer -> {
             try {
@@ -62,5 +64,19 @@ public class UserService {
                 observer.onError(e);
             }
         });
+    }
+
+    /**
+     * 可实现二级降级
+     *
+     * @return
+     */
+//    @HystrixCommand(fallbackMethod = "defaultUserSec")
+    public User defaultUser() {
+        return new User();
+    }
+
+    public void fallbackException(String id, Throwable throwable) {
+        assert "getUserById command failed".equals(throwable.getMessage());
     }
 }

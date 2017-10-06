@@ -45,4 +45,9 @@ public class ObservableTest {
         // 订阅
         observable.subscribe(subscriber);
     }
+
+    @Test
+    public void test() {
+        assert "xugr"=="xugr";
+    }
 }

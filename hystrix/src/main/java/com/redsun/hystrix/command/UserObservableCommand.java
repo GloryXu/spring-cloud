@@ -48,4 +48,24 @@ public class UserObservableCommand extends HystrixObservableCommand<User> {
             }
         });
     }
+
+    /**
+     * If {@link #observe()} or {@link #toObservable()} fails in any way then this method will be invoked to provide an opportunity to return a fallback response.
+     * <p>
+     * This should do work that does not require network transport to produce.
+     * <p>
+     * In other words, this should be a static or cached result that can immediately be returned upon failure.
+     * <p>
+     * If network traffic is wanted for fallback (such as going to MemCache) then the fallback implementation should invoke another {@link HystrixObservableCommand} instance that protects against
+     * that network
+     * access and possibly has another level of fallback that does not involve network access.
+     * <p>
+     * DEFAULT BEHAVIOR: It throws UnsupportedOperationException.
+     *
+     * @return R or UnsupportedOperationException if not implemented
+     */
+    @Override
+    protected Observable<User> resumeWithFallback() {
+        return super.resumeWithFallback();
+    }
 }
