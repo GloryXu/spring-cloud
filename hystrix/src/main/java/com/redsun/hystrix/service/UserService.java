@@ -1,11 +1,13 @@
 package com.redsun.hystrix.service;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.ObservableExecutionMode;
 import com.redsun.hystrix.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.netflix.hystrix.contrib.javanica.command.AsyncResult;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import rx.Observable;
 
 import java.util.concurrent.Future;
 
@@ -40,5 +42,25 @@ public class UserService {
                 return restTemplate.getForObject("http://USER-SERVICE/users/{1}", User.class, id);
             }
         };
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    @HystrixCommand(observableExecutionMode = ObservableExecutionMode.EAGER)
+    public Observable<User> getUserById(final String id) {
+        return Observable.create(observer -> {
+            try {
+                if (!observer.isUnsubscribed()) {
+                    User user = restTemplate.getForObject("http://USER-SERVICE/users/{1}", User.class, id);
+                    observer.onNext(user);
+                    observer.onCompleted();
+                }
+            } catch (Exception e) {
+                observer.onError(e);
+            }
+        });
     }
 }
