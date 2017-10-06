@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class User {
 
-    private int id;
+    private Long id;
 
     private String name;
 }
