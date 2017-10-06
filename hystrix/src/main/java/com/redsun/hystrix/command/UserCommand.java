@@ -3,6 +3,7 @@ package com.redsun.hystrix.command;
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.netflix.hystrix.HystrixCommandKey;
+import com.netflix.hystrix.HystrixThreadPoolKey;
 import com.redsun.hystrix.domain.User;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,6 +24,22 @@ public class UserCommand extends HystrixCommand<User> {
      */
     protected UserCommand(HystrixCommandGroupKey group, RestTemplate restTemplate, Long id) {
         super(group);
+        this.restTemplate = restTemplate;
+        this.id = id;
+    }
+
+    /**
+     * 类名作为默认的命令名称
+     * 组名、命令名称和线程池名称
+     *
+     * 分别对应注解中的属性：commandKey，groupKey， threadPoolKey
+     * @param restTemplate
+     * @param id
+     */
+    protected UserCommand(RestTemplate restTemplate, Long id) {
+        super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("GroupKey"))
+                .andCommandKey(HystrixCommandKey.Factory.asKey("CommandKey"))
+                .andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey("ThreadPoolKey")));
         this.restTemplate = restTemplate;
         this.id = id;
     }
