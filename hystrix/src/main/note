@@ -22,3 +22,9 @@
 4.在Hystrix中除了可使用线程池外，还可以使用信号量来控制单个依赖服务的并发度，信号量的开销远比线程池的开销小，但是不能设置超时和实现异步访问
     命令执行：如果将隔离策略参数execution.isolation.strategy设置为SEMAPHORE,Hystrix会使用信号量替代线程池来控制依赖服务的并发
     降级逻辑：当Hystrix尝试降级逻辑时，它会在调用线程池中使用信号量（默认值10）
+
+5.使用注解实现请求缓存
+    @CacheResult 该注解用来标记请求命令返回的结果应该被缓存，它必须与@HystrixCommand注解结合使用
+    @CacheRemove 该注解用来让请求命令的缓存失效，失效的缓存根据定义的Key决定
+    @CacheKey 该注解用来在请求命令的参数上标记，使其作为缓存的key值，如果没有标记则会使用所有参数。如果同时还使用了@CacheResult和@CacheRemove
+        注解的cacheKeyMethod方法指定Key的生成，那么该注解将不会起作用

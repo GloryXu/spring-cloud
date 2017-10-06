@@ -2,6 +2,8 @@ package com.redsun.hystrix.service;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.ObservableExecutionMode;
+import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheKey;
+import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheResult;
 import com.redsun.hystrix.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.netflix.hystrix.contrib.javanica.command.AsyncResult;
@@ -48,11 +50,13 @@ public class UserService {
      * fallbackMethod的值必须与方法名相同，所有服务降级的方法修饰符没要求
      * ignoreExceptions
      *
+     * CacheResult必须与HystrixCommand结合使用
      * @param id
      * @return
      */
     @HystrixCommand(observableExecutionMode = ObservableExecutionMode.EAGER, fallbackMethod = "defaultUser")
-    public Observable<User> getUserById(final String id) {
+    @CacheResult(cacheKeyMethod = "genCacheKey")
+    public Observable<User> getUserById( final String id) {
         return Observable.create(observer -> {
             try {
                 if (!observer.isUnsubscribed()) {
@@ -78,5 +82,9 @@ public class UserService {
 
     public void fallbackException(String id, Throwable throwable) {
         assert "getUserById command failed".equals(throwable.getMessage());
+    }
+
+    private String genCacheKey(String id) {
+        return id;
     }
 }
