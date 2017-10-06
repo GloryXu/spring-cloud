@@ -68,4 +68,25 @@ public class UserObservableCommand extends HystrixObservableCommand<User> {
     protected Observable<User> resumeWithFallback() {
         return super.resumeWithFallback();
     }
+
+    /**
+     * 优点：
+     *  1.减少重复的请求数，降低依赖服务的并发度
+     *  2.在同一用户请求的上下文中，相同依赖服务的返回始终保持一致
+     *  3.请求缓存在run()和construct()执行之前生效，所以可以有效减少不必要的线程开销
+     *
+     * Key to be used for request caching.
+     * <p>
+     * By default this returns null which means "do not cache".
+     * <p>
+     * To enable caching override this method and return a string key uniquely representing the state of a command instance.
+     * <p>
+     * If multiple command instances in the same request scope match keys then only the first will be executed and all others returned from cache.
+     *
+     * @return cacheKey
+     */
+    @Override
+    protected String getCacheKey() {
+        return String.valueOf(id);
+    }
 }
