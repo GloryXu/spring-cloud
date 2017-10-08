@@ -20,6 +20,7 @@ eureka:
     lease-renewal-interval-in-seconds: 30
     # 不同机房的实例配置成不同的区域值，以作为跨区域的容错机制
 #    metadata-map: shanghai
+#    prefer-ip-address: true
 
 # To see com.netflix.client.config.CommonClientConfigKey
 hello-service:
