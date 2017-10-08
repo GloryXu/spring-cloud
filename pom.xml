@@ -13,6 +13,7 @@
         <module>spring-cloud-config-server</module>
         <module>eureka</module>
         <module>hystrix</module>
+        <module>turbine</module>
     </modules>
     <packaging>pom</packaging>
 
