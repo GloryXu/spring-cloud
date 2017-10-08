@@ -1,7 +1,9 @@
 package com.redsun.hystrix.command;
 
-import com.netflix.hystrix.*;
-import com.netflix.hystrix.strategy.concurrency.HystrixConcurrencyStrategy;
+import com.netflix.hystrix.HystrixCommand;
+import com.netflix.hystrix.HystrixCommandGroupKey;
+import com.netflix.hystrix.HystrixCommandKey;
+import com.netflix.hystrix.HystrixRequestCache;
 import com.netflix.hystrix.strategy.concurrency.HystrixConcurrencyStrategyDefault;
 import com.redsun.hystrix.domain.User;
 import org.springframework.web.client.RestTemplate;

@@ -3,10 +3,11 @@ package com.redsun.hystrix.service;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.ObservableExecutionMode;
 import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheKey;
+import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheRemove;
 import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheResult;
+import com.netflix.hystrix.contrib.javanica.command.AsyncResult;
 import com.redsun.hystrix.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.netflix.hystrix.contrib.javanica.command.AsyncResult;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import rx.Observable;
@@ -27,7 +28,22 @@ public class UserService {
      */
     @HystrixCommand
     public User getUserById(Long id) {
+//  public User getUserById(@CacheKey("id") Long id) {
         return restTemplate.getForObject("http://USER-SERVICE/users/{1}", User.class, id);
+    }
+
+    @HystrixCommand
+    public User getUserById(@CacheKey("id") User user) {
+        return restTemplate.getForObject("http://USER-SERVICE/users/{1}", User.class, user.getId());
+    }
+
+    /**
+     * commandKey 必须指定，用来指定请求缓存的请求命令，因为只有通过该属性的配置，Hystrix才能找到正确的请求命令缓存位置
+     */
+    @CacheRemove(commandKey = "getUserById")
+    @HystrixCommand
+    public void update(@CacheKey("id") User user) {
+        restTemplate.postForObject("http://USER-SERVICE/users", user, User.class);
     }
 
     /**

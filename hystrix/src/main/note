@@ -27,4 +27,4 @@
     @CacheResult 该注解用来标记请求命令返回的结果应该被缓存，它必须与@HystrixCommand注解结合使用
     @CacheRemove 该注解用来让请求命令的缓存失效，失效的缓存根据定义的Key决定
     @CacheKey 该注解用来在请求命令的参数上标记，使其作为缓存的key值，如果没有标记则会使用所有参数。如果同时还使用了@CacheResult和@CacheRemove
-        注解的cacheKeyMethod方法指定Key的生成，那么该注解将不会起作用
+        注解的cacheKeyMethod方法指定Key的生成，那么该注解将不会起作用（优先级较之cacheKeyMethod低）
