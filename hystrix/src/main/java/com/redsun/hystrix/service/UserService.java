@@ -1,17 +1,21 @@
 package com.redsun.hystrix.service;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCollapser;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.netflix.hystrix.contrib.javanica.annotation.ObservableExecutionMode;
 import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheKey;
 import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheRemove;
 import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheResult;
 import com.netflix.hystrix.contrib.javanica.command.AsyncResult;
 import com.redsun.hystrix.domain.User;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import rx.Observable;
 
+import java.util.List;
 import java.util.concurrent.Future;
 
 @Service
@@ -65,14 +69,15 @@ public class UserService {
     /**
      * fallbackMethod的值必须与方法名相同，所有服务降级的方法修饰符没要求
      * ignoreExceptions
-     *
+     * <p>
      * CacheResult必须与HystrixCommand结合使用
+     *
      * @param id
      * @return
      */
     @HystrixCommand(observableExecutionMode = ObservableExecutionMode.EAGER, fallbackMethod = "defaultUser")
     @CacheResult(cacheKeyMethod = "genCacheKey")
-    public Observable<User> getUserById( final String id) {
+    public Observable<User> getUserById(final String id) {
         return Observable.create(observer -> {
             try {
                 if (!observer.isUnsubscribed()) {
@@ -102,5 +107,21 @@ public class UserService {
 
     private String genCacheKey(String id) {
         return id;
+    }
+
+    /**
+     * 通过注解实现请求合并
+     *
+     * @param id
+     * @return
+     */
+    @HystrixCollapser(batchMethod = "findAll",
+            collapserProperties = {@HystrixProperty(name = "timerDelayInMilliseconds", value = "100")})
+    public User find(Long id) {
+        return restTemplate.getForObject("http://USER-SERVICE/users/{1}", User.class, id);
+    }
+    @HystrixCommand
+    public List<User> findAll(List<Long> ids) {
+        return restTemplate.getForObject("http://USER-SERVICE/users?ids={1}", List.class, StringUtils.join(ids, ","));
     }
 }
