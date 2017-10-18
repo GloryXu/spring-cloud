@@ -5,6 +5,6 @@ spring:
       profile: dev
       label: config-label-test
   application:
-    name: didispace
+    name: itscore
 server:
   port: 8887

@@ -5,8 +5,9 @@ spring:
     config:
       server:
         git:
+#         uri: file://${user.home}/config-repo
           uri: git@192.168.13.199:docs/config-repo.git
-          search-paths: didispace
+          search-paths: didispace,itscore
           username: test
           password: test
   application:

@@ -11,3 +11,9 @@
 [/{name}-{profiles}.json],methods=[GET]
 [/{name}/{profile}/{label}/**],methods=[GET],produces=[application/octet-stream]
 [/{name}/{profile}/{label}/**],methods=[GET]
+
+--使用本地文件系统的存储方式来保存配置文件
+spring.profiles.active=native
+Config server默认从应用的/src/main/resource目录搜索配置文件
+也可以指定具体的配置文件位置
+spring.cloud.config.server.native.searchLocations
