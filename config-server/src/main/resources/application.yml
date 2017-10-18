@@ -5,8 +5,8 @@ spring:
     config:
       server:
         git:
-          uri: http://192.168.13.199
-          search-paths: docs/config-repo
+          uri: git@192.168.13.199:docs/config-repo.git
+          search-paths: didispace
           username: test
           password: test
   application:

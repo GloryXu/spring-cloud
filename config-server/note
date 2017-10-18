@@ -1,0 +1,13 @@
+--config server mapper
+[/key],methods=[GET]
+[/key/{name}/{profiles}],methods=[GET]
+[/{name}-{profiles}.properties],methods=[GET]
+[/{label}/{name}-{profiles}.properties],methods=[GET]
+[/{label}/{name}-{profiles}.json],methods=[GET]
+[/{name}-{profiles}.yml || /{name}-{profiles}.yaml],methods=[GET]
+[/{name}/{profiles:.*[^-].*}],methods=[GET]
+[/{name}/{profiles}/{label:.*}],methods=[GET]
+[/{label}/{name}-{profiles}.yml || /{label}/{name}-{profiles}.yaml],methods=[GET]
+[/{name}-{profiles}.json],methods=[GET]
+[/{name}/{profile}/{label}/**],methods=[GET],produces=[application/octet-stream]
+[/{name}/{profile}/{label}/**],methods=[GET]

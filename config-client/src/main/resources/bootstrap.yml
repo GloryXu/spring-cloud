@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8888
+      profile: dev
+      label: config-label-test
+  application:
+    name: didispace
+server:
+  port: 8887
