@@ -17,3 +17,16 @@ spring.profiles.active=native
 Config server默认从应用的/src/main/resource目录搜索配置文件
 也可以指定具体的配置文件位置
 spring.cloud.config.server.native.searchLocations
+
+--config server 实现加密和解密操作时，需要替换jdk中的安全jar文件，下载jce文件（见项目jce/jce_policy-6.zip），
+    替换$JAVA_HOME/jre/lib/security目录下文件
+/encrypt/status:查看加密功能状态的端点
+/key:查看密钥的端点
+/encrypt:对请求的body内容加密的端点
+/decrypt:对请求的body内容解密的端点
+
+可通过环境变量进行设置
+ENCRYPT_KEY_STORE_LOCATION
+ENCRYPT_KEY_STORE_ALIAS
+ENCRYPT_KEY_STORE_PASSWORD
+ENCRYPT_KEY_STORE_SECRET

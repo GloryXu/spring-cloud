@@ -8,8 +8,8 @@ spring:
 #         uri: file://${user.home}/config-repo
           uri: http://192.168.13.199/docs/config-repo.git
           search-paths: didispace,itscore,msg_dispatcher
-          username: test
-          password: test
+          username: xugr
+          password: ZNiTdeH1
           force-pull: true
         health:
           repositories:
@@ -20,6 +20,7 @@ spring:
               label: master
               #环境名
               profile: default
+        prefix:
   application:
     name: config-server
 #添加用户名/密码访问
@@ -27,3 +28,8 @@ security:
   user:
     name: user
     password: userPwd
+encrypt:
+  key-store:
+    location: classpath:server.jks
+    password: testtest
+    alias: mykey
