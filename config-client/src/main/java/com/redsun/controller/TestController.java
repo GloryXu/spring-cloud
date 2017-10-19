@@ -14,9 +14,12 @@ public class TestController {
     @Value("${from}")
     private String from;
 
+    @Value("${test}")
+    private String test;
+
     @RequestMapping("/from")
     public String from() {
-        return this.from;
+        return this.from + " and test = " + this.test;
     }
 
     /*@Autowired
