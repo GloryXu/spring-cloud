@@ -11,5 +11,19 @@ spring:
           username: test
           password: test
           force-pull: true
+        health:
+          repositories:
+            check:
+              #应用名
+              name: check-repo
+              #分支名
+              label: master
+              #环境名
+              profile: default
   application:
     name: config-server
+#添加用户名/密码访问
+security:
+  user:
+    name: user
+    password: userPwd
