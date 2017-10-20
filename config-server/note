@@ -30,3 +30,7 @@ ENCRYPT_KEY_STORE_LOCATION
 ENCRYPT_KEY_STORE_ALIAS
 ENCRYPT_KEY_STORE_PASSWORD
 ENCRYPT_KEY_STORE_SECRET
+
+--安装rabbitmq and erlang
+http://bbs.chinaunix.net/thread-4146675-1-1.html
+http://www.cnblogs.com/silent2012/p/5329591.html

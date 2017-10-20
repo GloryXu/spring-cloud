@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.redsun.spring.boot</groupId>
-    <artifactId>test-project</artifactId>
+    <artifactId>test-spring-boot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>rest-service</module>
@@ -14,10 +14,10 @@
         <module>eureka</module>
         <module>hystrix</module>
         <module>turbine</module>
+        <module>rabbitmq-hello</module>
     </modules>
     <packaging>pom</packaging>
 
-    <name>test-project</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
