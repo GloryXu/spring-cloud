@@ -7,6 +7,15 @@ spring:
       username: user
       password: userPwd
       fail-fast: true
+      retry:
+        # 下一间隔的乘数，当初始间隔为1000ms时，下一次间隔就为1100ms
+        multiplier: 1.1
+        # 初始重试时间
+        initial-interval: 1000
+        # 最大间隔时间
+        max-interval: 2000
+        # 最大重试次数
+        max-attempts: 6
   application:
     name: itscore
 server:
