@@ -6,6 +6,7 @@ spring:
       label: master
       username: user
       password: userPwd
+      fail-fast: true
   application:
     name: itscore
 server:
