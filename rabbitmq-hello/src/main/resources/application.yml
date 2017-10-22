@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: rabbitmq-hello
+  rabbitmq:
+    host: 192.168.11.201
+    port: 5672
+    username: springcloud
+    password: itssc
