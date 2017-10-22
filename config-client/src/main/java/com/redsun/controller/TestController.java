@@ -14,12 +14,12 @@ public class TestController {
     @Value("${from}")
     private String from;
 
-    @Value("${test}")
-    private String test;
+//    @Value("${test}")
+//    private String test;
 
     @RequestMapping("/from")
     public String from() {
-        return this.from + " and test = " + this.test;
+        return this.from;
     }
 
     /*@Autowired

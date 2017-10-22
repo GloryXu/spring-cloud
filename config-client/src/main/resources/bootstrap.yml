@@ -1,7 +1,7 @@
 spring:
   cloud:
     config:
-      uri: http://localhost:8888
+#      uri: http://localhost:8888
       profile: dev
       label: master
       username: user
@@ -16,10 +16,22 @@ spring:
         max-interval: 2000
         # 最大重试次数
         max-attempts: 6
+      discovery:
+        enabled: true
+        service-id: config-server
   application:
-    name: itscore
+    name: didispace
+  rabbitmq:
+    host: 192.168.11.201
+    port: 5672
+    username: springcloud
+    password: itssc
 server:
   port: 8887
 management:
   security:
     enabled: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.11.202:1111/eureka/
