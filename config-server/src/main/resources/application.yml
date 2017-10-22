@@ -33,3 +33,7 @@ encrypt:
     location: classpath:server.jks
     password: testtest
     alias: mykey
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.11.202:1111/eureka/
