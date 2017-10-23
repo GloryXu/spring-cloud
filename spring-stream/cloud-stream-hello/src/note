@@ -9,3 +9,5 @@ StreamListener
 
 消息分区
 当生产者将消息数据发送给多个消费者实例时，保证拥有共同特征的消息数据始终是由同一个消费者实例接收和处理
+
+Spring Cloud Stream是基于Spring Integration构建起来的，所以构建消息驱动服务的时候可以使用Spring Integration的原生注解来实现各种业务需求。
