@@ -1,0 +1,11 @@
+StreamListener
+将被修饰的方法注册为消息中间件上的数据流的事件监听器，注解中的属性对应了监听的消息通道名
+
+消费组
+一个主题被多种应用订阅，每一种应用分别有多个实例
+此时可设置spring.cloud.stream.bindings.input.group属性，将同一种应用设置成一个组，
+这样在这个主题发布消息时，每一种应用（即一个组）只有有一个实例消费该消息
+（通过命令实现:java -jar target/stream-hello-0.0.1-SNAPSHOT.jar --server.port=7776 --spring.cloud.stream.bindings.input.group=group-a）
+
+消息分区
+当生产者将消息数据发送给多个消费者实例时，保证拥有共同特征的消息数据始终是由同一个消费者实例接收和处理

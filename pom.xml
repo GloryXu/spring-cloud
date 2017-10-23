@@ -15,6 +15,7 @@
         <module>hystrix</module>
         <module>turbine</module>
         <module>rabbitmq-hello</module>
+        <module>stream-hello</module>
     </modules>
     <packaging>pom</packaging>
 

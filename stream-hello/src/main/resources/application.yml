@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: stream-hello
+  rabbitmq:
+    host: 192.168.11.201
+    port: 5672
+    username: springcloud
+    password: itssc
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: raw-sensor-data
+server:
+  port: 7777
