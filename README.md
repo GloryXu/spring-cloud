@@ -1,4 +1,4 @@
-# test-spring-boot
+# test-spring-boot/spring-cloud
 self project 
 ## config-client
 spring-cloud-config-server demo实现，已使用spring-cloud-bus实现动态刷新配置功能
