@@ -24,8 +24,7 @@ public class HelloController {
     @Autowired
     Registration eurekaRegistration;
 
-//    @RequestMapping(path = "/hello", method = RequestMethod.GET)
-    @GetMapping("/hello")
+    /*@GetMapping("/hello")
     public String hello() throws InterruptedException {
         List<ServiceInstance> serviceInstances = discoveryClient.getInstances(eurekaRegistration.getServiceId());
 
@@ -39,15 +38,16 @@ public class HelloController {
                     ", uri:" + serviceInstance.getUri() + ", serviceId:" + serviceInstance.getServiceId());
         }
 
-        /*List<String> services = discoveryClient.getServices();
-        for (String service : services) {
-            List<ServiceInstance> serviceInstances = discoveryClient.getInstances(service);
-            for (ServiceInstance serviceInstance : serviceInstances) {
-                logger.info("/hello, host:" + serviceInstance.getHost() + ", port:" + serviceInstance.getPort() +
-                        ", uri:" + serviceInstance.getUri());
-            }
-        }*/
+        return "Hello world!";
+    }*/
 
+    @GetMapping("/hello")
+    public String hello() throws InterruptedException {
+        List<ServiceInstance> serviceInstances = discoveryClient.getInstances(eurekaRegistration.getServiceId());
+        for (ServiceInstance serviceInstance : serviceInstances) {
+            logger.info("/hello, host:" + serviceInstance.getHost() + ", port:" + serviceInstance.getPort() +
+                    ", uri:" + serviceInstance.getUri() + ", serviceId:" + serviceInstance.getServiceId());
+        }
         return "Hello world!";
     }
 }

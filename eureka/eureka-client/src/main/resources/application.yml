@@ -11,7 +11,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://peer1:1111/eureka/
+      defaultZone: http://192.168.11.202:1111/eureka
 #      defaultZone: http://peer2:1112/eureka/,http://peer1:1111/eureka/
   instance:
     # 定义服务时效时间
