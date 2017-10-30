@@ -1,14 +1,13 @@
 package com.redsun.eureka.hello;
 
+import com.redsun.eureka.domain.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.serviceregistry.Registration;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Random;
@@ -49,5 +48,20 @@ public class HelloController {
                     ", uri:" + serviceInstance.getUri() + ", serviceId:" + serviceInstance.getServiceId());
         }
         return "Hello world!";
+    }
+
+    @GetMapping("/hello1")
+    public String hello(@RequestParam String name) throws InterruptedException {
+        return "Hello world!" + name;
+    }
+
+    @GetMapping("/hello2")
+    public User hello(@RequestHeader String name, @RequestHeader Integer age) throws InterruptedException {
+        return new User(name, age);
+    }
+
+    @PostMapping("/hello3")
+    public String hello(@RequestBody User user) throws InterruptedException {
+        return "Hello " + user.getName() + "," + user.getAge() + ".";
     }
 }
