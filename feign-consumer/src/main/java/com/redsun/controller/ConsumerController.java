@@ -2,10 +2,12 @@ package com.redsun.controller;
 
 import com.redsun.domain.User;
 import com.redsun.service.HelloService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 public class ConsumerController {
 
@@ -20,10 +22,12 @@ public class ConsumerController {
     @GetMapping(value = "/feign-consumer2")
     public String helloConsumer2() {
         StringBuffer sb = new StringBuffer();
-        sb.append(helloService.hello()).append("\n");
-        sb.append(helloService.hello("XUGR")).append("\n");
-        sb.append(helloService.hello("XUGR", 25)).append("\n");
-        sb.append(helloService.hello(new User("XUGR", 25))).append("\n");
-        return sb.toString();
+        sb.append(helloService.hello()).append(" \n");
+        sb.append(helloService.hello("XUGR")).append(" \n");
+        sb.append(helloService.hello("XUGR", 25)).append(" \n");
+        sb.append(helloService.hello(new User("XUGR", 25))).append(" \n");
+        String retInfo = sb.toString();
+        log.info("retInfo={}", retInfo);
+        return retInfo;
     }
 }
