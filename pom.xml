@@ -17,6 +17,7 @@
         <module>rabbitmq-hello</module>
         <module>spring-stream</module>
         <module>feign-consumer</module>
+        <module>feign</module>
     </modules>
     <packaging>pom</packaging>
 
